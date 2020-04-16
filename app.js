@@ -9,10 +9,11 @@ var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 
 const app = express();
+dotenv.config({ path: '.env' })
 
 // Set up mongoose connection
 let mongoose = require('mongoose');
-let dev_db_url = 'mongodb+srv://lewisA:password@cluster0-fogqp.azure.mongodb.net/test?retryWrites=true&w=majority'
+let dev_db_url = process.env.ATLAS_URI
 let mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
